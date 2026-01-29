@@ -1,0 +1,86 @@
+body {
+  font-family: "Inter", Arial, sans-serif;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  color: #333;
+}
+
+.tabs {
+  display: flex;
+  background: #111;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+}
+
+.tab:hover {
+  background: #222;
+}
+
+.tab.active {
+  background: #21aeb3;
+  font-weight: 600;
+}
+
+.filter-block {
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.output {
+  padding: 10px;
+  min-height: 320px;
+  background: #fff;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: none;
+  outline: none;
+  overflow-y: auto;
+}
+
+.output::-webkit-scrollbar {
+  width: 6px;
+}
+
+.output::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+.output::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.output::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+.output b {
+  font-weight: 700;
+  color: #000;
+}
+.link-block {
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.link-block a {
+  color: #21aeb3;
+  text-decoration: none;
+}
+
+.link-block a:hover {
+  text-decoration: underline;
+}
+
