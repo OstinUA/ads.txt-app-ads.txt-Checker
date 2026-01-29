@@ -12,7 +12,7 @@
   let adsUrl = "";
   let appAdsUrl = "";
   let sellersData = [];
-  let current = "ads";
+  let current = "seller";
 
   function getDomain() {
     return new Promise((resolve) => {
