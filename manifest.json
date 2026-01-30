@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ads.txt & app-ads.txt Checker",
-  "version": "3.3.5",
+  "version": "3.4.0",
   "description": "View and filter ads.txt / app-ads.txt files. Automatically matches adWMG sellers | adWMG / by Ostin",
   "icons": {
     "128": "icons/icon128.png"
@@ -9,7 +9,6 @@
   "permissions": [
     "tabs",
     "storage",
-    "contextMenus",
     "scripting"
   ],
   "host_permissions": [
@@ -22,9 +21,5 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "adWMG Checker"
-  },
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
   }
 }

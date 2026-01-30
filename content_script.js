@@ -1,4 +1,4 @@
-// 💉 content_script.js (Исправлен)
+// 💉 content_script.js
 (async () => {
   if (window.top !== window) return;
   if (!/^https?:\/\//i.test(location.protocol)) return;

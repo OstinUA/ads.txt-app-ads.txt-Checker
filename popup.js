@@ -1,4 +1,4 @@
-// 📄 popup.js (Исправлен)
+// 📄 popup.js
 (() => {
   const adsTab = document.getElementById("ads-tab");
   const appAdsTab = document.getElementById("appads-tab");
@@ -7,7 +7,7 @@
   const filterCheckbox = document.getElementById("filter-checkbox");
   const filterBlock = document.getElementById("filter-block");
   const linkBlock = document.getElementById("link-block");
-  const openOptionsBtn = document.getElementById("openOptionsBtn");
+  // const openOptionsBtn = document.getElementById("openOptionsBtn"); // Удалена
 
   let adsText = "";
   let appAdsText = "";
@@ -203,16 +203,7 @@
   sellerTab.addEventListener("click", () => setActive("seller"));
   filterCheckbox.addEventListener("change", showCurrent);
 
-  if (openOptionsBtn) {
-    openOptionsBtn.addEventListener("click", () => {
-      if (chrome.runtime.openOptionsPage) {
-        chrome.runtime.openOptionsPage();
-      } else {
-        const id = chrome.runtime.id;
-        window.open(`chrome-extension://${id}/options.html`);
-      }
-    });
-  }
+  // Логика кнопки настроек удалена
 
   async function loadData() {
     output.textContent = "Loading...";
