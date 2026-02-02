@@ -7,14 +7,27 @@
 </head>
 <body>
   <div class="tabs">
-    <div id="appads-tab" class="tab active">app-ads.txt</div>
-    <div id="ads-tab" class="tab">ads.txt</div>
+    <div id="seller-tab" class="tab active">
+      <span class="tab-text">sellers.json</span>
+      <span id="seller-line-count" class="line-count"></span>
+    </div>
+    <div id="ads-tab" class="tab">
+      <span class="tab-text">ads.txt</span>
+      <span id="ads-line-count" class="line-count"></span>
+    </div>
+    <div id="appads-tab" class="tab">
+      <span class="tab-text">app-ads.txt</span>
+      <span id="appads-line-count" class="line-count"></span>
+    </div>
   </div>
-  <div class="filter-block">
-    <div id="link-block"></div>
-    <label><input type="checkbox" id="filter-checkbox" /> Show only adWMG</label>
+
+  <div id="filter-area" class="filter-area">
+    <div id="link-block" class="link-block"></div>
+    <div class="filter-status-text">Show only adWMG</div>
   </div>
+
   <pre id="output" class="output">Loading...</pre>
+
   <script src="popup.js"></script>
 </body>
 </html>
