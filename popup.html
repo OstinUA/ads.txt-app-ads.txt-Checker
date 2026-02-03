@@ -2,31 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>adWMG Checker</title>
+  <title>ads.txt & app-ads.txt Checker</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <div class="tabs">
-    <div id="seller-tab" class="tab active">
-      <span class="tab-text">sellers.json</span>
-      <span id="seller-line-count" class="line-count"></span>
+  <div class="header-container">
+    <div class="tabs">
+      <div id="seller-tab" class="tab active">
+        <span class="tab-text">sellers.json</span>
+        <span id="seller-line-count" class="line-count"></span>
+      </div>
+      <div id="ads-tab" class="tab">
+        <span class="tab-text">ads.txt</span>
+        <span id="ads-line-count" class="line-count"></span>
+      </div>
+      <div id="appads-tab" class="tab">
+        <span class="tab-text">app-ads.txt</span>
+        <span id="appads-line-count" class="line-count"></span>
+      </div>
     </div>
-    <div id="ads-tab" class="tab">
-      <span class="tab-text">ads.txt</span>
-      <span id="ads-line-count" class="line-count"></span>
-    </div>
-    <div id="appads-tab" class="tab">
-      <span class="tab-text">app-ads.txt</span>
-      <span id="appads-line-count" class="line-count"></span>
-    </div>
+    <div id="settings-toggle" class="settings-toggle">⠸</div>
+  </div>
+
+  <div id="settings-panel" class="settings-panel" style="display: none;">
+    <input type="text" id="sellers-url-input" placeholder="https://adwmg.com/sellers.json" />
+    <button id="save-settings">Save</button>
   </div>
 
   <div id="filter-area" class="filter-area">
     <div id="link-block" class="link-block"></div>
-    <div class="filter-status-text">Show only adWMG</div>
+    <div id="filter-status-text" class="filter-status-text">Show only adWMG</div>
   </div>
 
   <pre id="output" class="output">Loading...</pre>
+
+  <div class="footer">
+    <a href="https://adwmg.com" target="_blank" class="footer-link">
+      <span>Powered by adWMG: Programmatic Monetization Company</span>
+      <img src="icons/iconlogo.png" alt="logo" class="footer-icon" />
+    </a>
+  </div>
 
   <script src="popup.js"></script>
 </body>

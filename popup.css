@@ -1,16 +1,24 @@
 body {
   font-family: "Inter", Segoe UI, sans-serif;
-  width: 480px;
+  width: 500px;
   margin: 0;
   padding: 0;
   background: #f8f9fa;
   color: #333;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container {
+  display: flex;
+  background: #111;
+  align-items: center;
 }
 
 .tabs {
   display: flex;
-  background: #111;
+  flex: 1;
 }
 
 .tab {
@@ -29,6 +37,44 @@ body {
 .tab:last-child { border-right: none; }
 .tab:hover { background: #222; }
 .tab.active { background: #21aeb3; font-weight: 600; }
+
+.settings-toggle {
+  padding: 0 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.settings-toggle:hover { opacity: 1; }
+
+.settings-panel {
+  background: #222;
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.settings-panel input {
+  flex: 1;
+  background: #333;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.settings-panel button {
+  background: #21aeb3;
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
 
 .line-count {
   font-size: 8px;
@@ -73,7 +119,7 @@ body {
 
 .output {
   padding: 10px;
-  height: 440px;
+  height: 380px;
   background: #fff;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -85,22 +131,34 @@ body {
   margin: 0;
 }
 
-.output::-webkit-scrollbar {
-  width: 10px;
+.output::-webkit-scrollbar { width: 10px; }
+.output::-webkit-scrollbar-track { background: #f1f1f1; }
+.output::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 4px; }
+.output::-webkit-scrollbar-thumb:hover { background-color: #21aeb3; }
+
+.footer {
+  background: #f0f9fa;
+  border-top: 1px solid #ccc;
+  padding: 4px 12px;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.output::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #464451;
+  font-size: 11px;
+  transition: color 0.2s;
+  font-weight: 500;
 }
 
-.output::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
-  min-height: 50px;
-}
+.footer-link:hover { color: #21aeb3; }
 
-.output::-webkit-scrollbar-thumb:hover {
-  background-color: #21aeb3;
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
-
-.output b { font-weight: 700; color: #000; }

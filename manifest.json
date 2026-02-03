@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ads.txt & app-ads.txt Checker",
-  "version": "4.1.1",
-  "description": "View and filter ads.txt / app-ads.txt files. Automatically matches adWMG sellers | adWMG / by Ostin",
+  "name": "ads.txt & app-ads.txt & sellers.json Lines Checker",
+  "version": "5.0.3",
+  "description": "View and filter ads.txt / app-ads.txt files. Automatically matches Company sellers | adWMG / by Ostin",
   "icons": {
     "128": "icons/icon128.png"
   },
@@ -20,6 +20,6 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "adWMG Checker"
+    "default_title": "Lines Checker"
   }
 }
