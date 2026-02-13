@@ -1,8 +1,8 @@
-const DEFAULT_SELLERS_URL = "https://adwmg.com/sellers.json";
-const CACHE_KEY = "adwmg_sellers_cache";
-const CACHE_TS_KEY = "adwmg_sellers_ts";
+const DEFAULT_SELLERS_URL = "https://yoursite.com/sellers.json";
+const CACHE_KEY = "yoursite_sellers_cache";
+const CACHE_TS_KEY = "yoursite_sellers_ts";
 const CUSTOM_URL_KEY = "custom_sellers_url";
-const BADGE_BG_COLOR = "#21aeb3";
+const BADGE_BG_COLOR = "#3e5f8a";
 const SCAN_COOLDOWN_MS = 60 * 1000;
 const FETCH_TIMEOUT_MS = 10000;
 const FETCH_RETRIES = 3;
@@ -83,11 +83,11 @@ async function getFilterDomain() {
   try {
     return new URL(url).hostname.replace("www.", "").split(".")[0];
   } catch {
-    return "adwmg";
+    return "yoursite";
   }
 }
 
-async function executeCountAdwmgLines(tabId, origin) {
+async function executeCountyoursiteLines(tabId, origin) {
   const domain = await getFilterDomain();
   try {
     const results = await chrome.scripting.executeScript({
@@ -106,7 +106,7 @@ async function executeCountAdwmgLines(tabId, origin) {
               .catch(() => { clearTimeout(id); resolve(null); });
           });
         }
-        function countAdwmgLines(text, brand) {
+        function countyoursiteLines(text, brand) {
           if (!text) return 0;
           return text.split("\n").filter(l => l.toLowerCase().includes(brand.toLowerCase())).length;
         }
@@ -118,9 +118,9 @@ async function executeCountAdwmgLines(tabId, origin) {
           ]);
           return { 
             ok: true, 
-            adsCount: countAdwmgLines(adsText, filterDomain),
+            adsCount: countyoursiteLines(adsText, filterDomain),
             appAdsLocalFailed: appAdsTextLocal === null,
-            appAdsCountLocal: countAdwmgLines(appAdsTextLocal, filterDomain)
+            appAdsCountLocal: countyoursiteLines(appAdsTextLocal, filterDomain)
           };
         })();
       },
@@ -152,7 +152,7 @@ async function processScan(tabId) {
   const tab = await new Promise((resolve) => chrome.tabs.get(tabId, (t) => resolve(chrome.runtime.lastError ? null : t)));
   if (!tab || !tab.url || !/^https?:\/\//i.test(tab.url)) return null;
   const origin = new URL(tab.url).origin;
-  const scanRes = await executeCountAdwmgLines(tabId, origin);
+  const scanRes = await executeCountyoursiteLines(tabId, origin);
   countsByTab[tabId] = scanRes.count;
   return scanRes.count;
 }

@@ -1,10 +1,13 @@
-# 🛡️ Ads.txt & Sellers.json Validator (Chrome Extension)
+# 🛡️ Ads.txt / App-ads.txt & Sellers.json Validator (Chrome Extension)
 
 A comprehensive AdOps utility tool built for Chrome (Manifest V3). It automates the validation of `ads.txt` and `app-ads.txt` files, cross-references inventory against a `sellers.json` registry, and highlights syntax errors or configuration mismatches in real-time.
 
-![Version](https://img.shields.io/badge/version-5.6.0-blue)
-![Manifest](https://img.shields.io/badge/manifest-V3-green)
+![Version](https://img.shields.io/badge/version-6.0.0-3e5f8a)
+![Platform](https://img.shields.io/badge/platform-Chrome_Extension-4285F4?logo=google-chrome&logoColor=white)
+![Manifest](https://img.shields.io/badge/manifest-V3-2ea44f)
 ![Category](https://img.shields.io/badge/category-AdOps-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Repo Size](https://img.shields.io/github/repo-size/OstinUA/ads.txt-app-ads.txt-sellers.json-Lines-Checker)
 
 ## Key Features
 
@@ -14,7 +17,7 @@ A comprehensive AdOps utility tool built for Chrome (Manifest V3). It automates 
 * **Owner Domain Validation:** Checks the `OWNERDOMAIN` field against the actual site domain to ensure authorization (Returns: `OK`, `MISMATCH`, or `MISSING`).
 
 ### 2. Sellers.json Cross-Reference
-* **Inventory Matching:** Automatically fetches `sellers.json` (defaults to `adwmg.com`, configurable) and caches it.
+* **Inventory Matching:** Automatically fetches `sellers.json` (defaults to `yoursite.com`, configurable) and caches it.
 * **Discrepancy Detection:** Highlights `ads.txt` entries where the Seller ID is **missing** from the associated `sellers.json` file (Logic Warning).
 * **Brand Filtering:** One-click filter to show only lines related to a specific SSP/Brand.
 
@@ -51,7 +54,7 @@ A comprehensive AdOps utility tool built for Chrome (Manifest V3). It automates 
         * **Red (X):** Critical Syntax Error.
         * **Pink (!):** ID Mismatch (ID exists in text but not in sellers.json).
     * **Tab 3 (app-ads.txt):** Same analysis for mobile app inventory.
-4.  **Settings:** Click the `⠸` icon to change the target `sellers.json` URL (Default: `https://adwmg.com/sellers.json`).
+4.  **Settings:** Click the `⠸` icon to change the target `sellers.json` URL (Default: `https://yoursite.com/sellers.json`).
 
 ## Validation Logic Details
 

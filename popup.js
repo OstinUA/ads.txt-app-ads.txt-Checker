@@ -29,7 +29,7 @@
   let sellersData = [];
   let current = "seller";
   let isFilterActive = true;
-  let currentSellersUrl = "https://adwmg.com/sellers.json";
+  let currentSellersUrl = "https://yoursite.com/sellers.json";
   let currentTabDomain = "";
 
   function sendMessageSafe(message, callback = () => {}) {
@@ -43,9 +43,9 @@
   function getBrandName(url) {
     try {
       const hostname = new URL(url).hostname;
-      return hostname.replace("www.", "").split(".")[0] || "adWMG";
+      return hostname.replace("www.", "").split(".")[0] || "yoursite";
     } catch {
-      return "adWMG";
+      return "yoursite";
     }
   }
 
