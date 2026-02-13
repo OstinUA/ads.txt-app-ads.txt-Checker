@@ -2,13 +2,11 @@ const DEFAULT_SELLERS_URL = "https://adwmg.com/sellers.json";
 const CACHE_KEY = "adwmg_sellers_cache";
 const CACHE_TS_KEY = "adwmg_sellers_ts";
 const CUSTOM_URL_KEY = "custom_sellers_url";
-
 const BADGE_BG_COLOR = "#21aeb3";
 const SCAN_COOLDOWN_MS = 60 * 1000;
 const FETCH_TIMEOUT_MS = 10000;
 const FETCH_RETRIES = 3;
 const FIXED_CACHE_TTL_MS = 1 * 60 * 60 * 1000;
-
 const INITIAL_DELAY_MS = 5000;
 const RETRY_INTERVAL_MS = 5000;
 const MAX_RETRIES = 3;
@@ -36,10 +34,8 @@ async function fetchWithTimeoutAndRetry(url, { timeout = FETCH_TIMEOUT_MS, retri
 }
 
 async function fetchAndCacheSellers() {
-
   const config = await new Promise(r => chrome.storage.local.get([CUSTOM_URL_KEY], r));
   const urlToFetch = config[CUSTOM_URL_KEY] || DEFAULT_SELLERS_URL;
-
   try {
     const res = await fetchWithTimeoutAndRetry(urlToFetch, { timeout: FETCH_TIMEOUT_MS, retries: FETCH_RETRIES });
     const data = await res.json();

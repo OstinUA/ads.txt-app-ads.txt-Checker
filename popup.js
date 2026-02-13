@@ -34,12 +34,8 @@
 
   function sendMessageSafe(message, callback = () => {}) {
     if (!chrome.runtime || !chrome.runtime.id) return;
-
     chrome.runtime.sendMessage(message, (response) => {
-      if (chrome.runtime.lastError) {
-        console.warn("Service Worker is not ready yet:", chrome.runtime.lastError.message);
-        return;
-      }
+      if (chrome.runtime.lastError) return;
       if (callback) callback(response);
     });
   }
@@ -86,12 +82,10 @@
     const url = `${base.replace(/\/$/, "")}/${name}`;
     try {
       const res = await fetchWithTimeoutAndRetry(url, { force });
-
       const contentType = res.headers.get("content-type");
       if (contentType && contentType.toLowerCase().includes("text/html")) {
         return { text: `Error: ${name} returned HTML header (likely a 404 page).`, isError: true };
       }
-
       if (!res.ok) return { text: `File ${name} not found (Error: ${res.status}).`, isError: true };
       
       const text = await res.text();
