@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ads.txt & app-ads.txt & sellers.json Lines Checker",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "View and filter ads.txt / app-ads.txt files. Automatically matches Company sellers | by OstinUA",
   "icons": {
     "128": "icons/icon128.png"

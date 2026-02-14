@@ -81,7 +81,17 @@ async function getFilterDomain() {
   const config = await new Promise(r => chrome.storage.local.get([CUSTOM_URL_KEY], r));
   const url = config[CUSTOM_URL_KEY] || DEFAULT_SELLERS_URL;
   try {
-    return new URL(url).hostname.replace("www.", "").split(".")[0];
+    const hostname = new URL(url).hostname;
+    const parts = hostname.split(".");
+    if (parts.length >= 2) {
+      const last = parts[parts.length - 1];
+      const secondLast = parts[parts.length - 2];
+      if (parts.length > 2 && (secondLast === "co" || secondLast === "com") && last.length === 2) {
+        return parts[parts.length - 3];
+      }
+      return secondLast;
+    }
+    return parts[0] || "yoursite";
   } catch {
     return "yoursite";
   }
