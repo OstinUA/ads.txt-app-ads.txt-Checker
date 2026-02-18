@@ -57,10 +57,29 @@ A comprehensive AdOps utility tool built for Chrome (Manifest V3). It automates 
     * **Tab 3 (app-ads.txt):** Same analysis for mobile app inventory.
 4.  **Settings:** Click the `⠸` icon to change the target `sellers.json` URL or force refresh the cache.
 
+## Validation Logic Details
+
+The extension performs the following checks on every line:
+
+```javascript
+// Example Logic Flow
+if (line.includes(brand)) {
+    // 1. Syntax Check
+    if (line_starts_with_invalid_char) {
+        mark_critical_error("Ignored by crawlers");
+    }
+    
+    // 2. ID Validation
+    const sellerId = extract_id(line);
+    if (!sellersJson.contains(sellerId)) {
+        mark_warning("ID not found in sellers.json");
+    }
+}```
+
 ## Project Structure
 
 ├── background.js      # Service worker: handles caching, badges, and timers
-├── utils.js           # Shared logic: domain parsing, normalization (DRY principle)
+├── content_script.js  # Injects into page to fetch local files
 ├── manifest.json      # Extension configuration (V3)
 ├── popup.html         # Main UI structure
 ├── popup.css          # Styling (Tabs, Warnings, Badges)
