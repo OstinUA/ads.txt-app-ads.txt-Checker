@@ -3,6 +3,8 @@
   --text-color: #333;
   --brand-color: #21aeb3;
   --border-color: #ddd;
+  --brand-light-bg: #e6f7f8;
+  --dark-header: #134e50;
 }
 
 html {
@@ -15,7 +17,7 @@ html {
 
 body {
   font-family: "Inter", Segoe UI, sans-serif;
-  width: 500px;
+  width: 550px;
   margin: 0;
   padding: 0;
   background: var(--bg-color);
@@ -34,7 +36,7 @@ body {
 
 .header-container {
   display: flex;
-  background: #111;
+  background: var(--dark-header);
   align-items: center;
 }
 
@@ -53,10 +55,12 @@ body {
   cursor: pointer;
   transition: background 0.2s;
   font-size: 13px;
-  border-right: 1px solid #333;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 .tab:last-child { border-right: none; }
-.tab:hover { background: #222; }
+.tab:hover { 
+    background: #1a6b6e;
+}
 .tab.active { background: var(--brand-color); font-weight: 600; }
 
 .settings-toggle {
@@ -69,16 +73,16 @@ body {
 .settings-toggle:hover { opacity: 1; }
 
 .settings-panel {
-  background: #222;
+  background: var(--dark-header);
   padding: 10px;
   display: flex;
   gap: 8px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #21aeb3;
 }
 .settings-panel input {
   flex: 1;
-  background: #333;
-  border: 1px solid #444;
+  background: #0b2d2f;
+  border: 1px solid #21aeb3;
   color: #fff;
   padding: 5px 8px;
   font-size: 12px;
@@ -95,13 +99,13 @@ body {
 }
 
 .settings-panel button#force-refresh-cache {
-  background: #444;
+  background: #2b5e5e;
   margin-left: 4px;
   padding: 5px 8px;
 }
 
 .settings-panel button#force-refresh-cache:hover {
-  background: #555;
+  background: #3a7575;
 }
 
 .settings-panel button#force-refresh-cache:disabled {
@@ -131,7 +135,7 @@ body {
 
 .filter-area:hover { background: #fafafa; }
 .filter-area.active {
-  background: #f0f9fa;
+  background: var(--brand-light-bg);
   border-left: 4px solid var(--brand-color);
 }
 
@@ -168,6 +172,12 @@ body {
   align-items: flex-end;
   gap: 3px;
   min-width: 90px;
+}
+
+.badges-row {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
 }
 
 .status-date {
@@ -210,9 +220,9 @@ body {
 .warning-icon { color: #fa5252; font-weight: bold; margin-left: 6px; font-size: 11px; cursor: help; }
 
 .line-row.highlight-own-domain {
-  background-color: #f0f9fa;
+  background-color: var(--brand-light-bg);
   border-left: 3px solid var(--brand-color);
-  color: #1a8a8e;
+  color: #1a4f52;
   font-weight: 600;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -224,19 +234,19 @@ body {
 .output::-webkit-scrollbar-thumb:hover { background-color: var(--brand-color); }
 
 .footer {
-  background: #f0f9fa;
+  background: var(--brand-light-bg);
   border-top: 1px solid var(--border-color);
-  padding: 4px 12px;
+  padding: 3px 20px;
   display: flex;
   justify-content: flex-end;
 }
 .footer-link {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
   color: #464451;
-  font-size: 11px;
+  font-size: 12px;
   transition: color 0.2s;
   font-weight: 500;
 }

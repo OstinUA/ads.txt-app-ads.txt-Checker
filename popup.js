@@ -29,7 +29,7 @@
   let sellersData = [];
   let current = "seller";
   let isFilterActive = true;
-  let currentSellersUrl = "https://adwmg.com/sellers.json";
+  let currentSellersUrl = DEFAULT_SELLERS_URL;
   let currentTabDomain = "";
 
   function sendMessageSafe(message, callback = () => {}) {
@@ -38,15 +38,6 @@
       if (chrome.runtime.lastError) return;
       if (callback) callback(response);
     });
-  }
-
-  function getBrandName(url) {
-    try {
-      const hostname = new URL(url).hostname;
-      return hostname.replace("www.", "").split(".")[0] || "adWMG";
-    } catch {
-      return "adWMG";
-    }
   }
 
   function updateFilterText() {
@@ -104,16 +95,6 @@
     } catch {
       return { text: `File ${name} not found (Network Error).`, isError: true };
     }
-  }
-
-  function cleanDomain(input) {
-    if (!input) return "";
-    let d = input.toLowerCase().trim();
-    d = d.replace(/^https?:\/\//, "");
-    d = d.replace(/^www\./, "");
-    d = d.replace(/\.+/g, "."); 
-    d = d.split(/[/?#\s,;=:]/)[0];
-    return d;
   }
 
   function checkOwnerDomain(text) {
@@ -305,7 +286,7 @@
   saveBtn.addEventListener("click", () => {
     const newUrl = urlInput.value.trim();
     if (newUrl) {
-      chrome.storage.local.set({ custom_sellers_url: newUrl }, () => {
+      chrome.storage.local.set({ [CUSTOM_URL_KEY]: newUrl }, () => {
         currentSellersUrl = newUrl; updateFilterText();
         sendMessageSafe({ type: "refreshSellers" }, () => loadData(true));
       });
@@ -329,8 +310,8 @@
   async function loadData(force = false) {
     output.textContent = "Loading...";
     return new Promise((resolve) => {
-      chrome.storage.local.get(["custom_sellers_url"], (res) => {
-        if (res.custom_sellers_url) { currentSellersUrl = res.custom_sellers_url; urlInput.value = currentSellersUrl; }
+      chrome.storage.local.get([CUSTOM_URL_KEY], (res) => {
+        if (res[CUSTOM_URL_KEY]) { currentSellersUrl = res[CUSTOM_URL_KEY]; urlInput.value = currentSellersUrl; }
         updateFilterText();
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
           let origin = ""; try { const u = new URL(tabs[0].url); if (u.protocol.startsWith("http")) { origin = u.origin; currentTabDomain = u.hostname; } } catch {}

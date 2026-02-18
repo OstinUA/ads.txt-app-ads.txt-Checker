@@ -1,7 +1,7 @@
-const DEFAULT_SELLERS_URL = "https://adwmg.com/sellers.json";
+importScripts('utils.js');
+
 const CACHE_KEY = "adwmg_sellers_cache";
 const CACHE_TS_KEY = "adwmg_sellers_ts";
-const CUSTOM_URL_KEY = "custom_sellers_url";
 const BADGE_BG_COLOR = "#21aeb3";
 const SCAN_COOLDOWN_MS = 60 * 1000;
 const FETCH_TIMEOUT_MS = 10000;
@@ -77,18 +77,14 @@ function cancelScheduled(tabId) {
   }
 }
 
-async function getFilterDomain() {
+async function getSellersDomain() {
   const config = await new Promise(r => chrome.storage.local.get([CUSTOM_URL_KEY], r));
   const url = config[CUSTOM_URL_KEY] || DEFAULT_SELLERS_URL;
-  try {
-    return new URL(url).hostname.replace("www.", "").split(".")[0];
-  } catch {
-    return "adwmg";
-  }
+  return getBrandName(url);
 }
 
-async function executeCountAdwmgLines(tabId, origin) {
-  const domain = await getFilterDomain();
+async function executeCountadwmgLines(tabId, origin) {
+  const domain = await getSellersDomain();
   try {
     const results = await chrome.scripting.executeScript({
       target: { tabId },
@@ -106,7 +102,7 @@ async function executeCountAdwmgLines(tabId, origin) {
               .catch(() => { clearTimeout(id); resolve(null); });
           });
         }
-        function countAdwmgLines(text, brand) {
+        function countadwmgLines(text, brand) {
           if (!text) return 0;
           return text.split("\n").filter(l => l.toLowerCase().includes(brand.toLowerCase())).length;
         }
@@ -118,9 +114,9 @@ async function executeCountAdwmgLines(tabId, origin) {
           ]);
           return { 
             ok: true, 
-            adsCount: countAdwmgLines(adsText, filterDomain),
+            adsCount: countadwmgLines(adsText, filterDomain),
             appAdsLocalFailed: appAdsTextLocal === null,
-            appAdsCountLocal: countAdwmgLines(appAdsTextLocal, filterDomain)
+            appAdsCountLocal: countadwmgLines(appAdsTextLocal, filterDomain)
           };
         })();
       },
@@ -152,7 +148,7 @@ async function processScan(tabId) {
   const tab = await new Promise((resolve) => chrome.tabs.get(tabId, (t) => resolve(chrome.runtime.lastError ? null : t)));
   if (!tab || !tab.url || !/^https?:\/\//i.test(tab.url)) return null;
   const origin = new URL(tab.url).origin;
-  const scanRes = await executeCountAdwmgLines(tabId, origin);
+  const scanRes = await executeCountadwmgLines(tabId, origin);
   countsByTab[tabId] = scanRes.count;
   return scanRes.count;
 }
